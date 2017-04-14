@@ -22,13 +22,11 @@ static void *separatorLineKey = @"separatorLineKey";
 
 - (void)setShouldRemoveFirstAndLastSeparatorLine:(BOOL)shouldRemoveFirstAndLastSeparatorLine
 {
-
     objc_setAssociatedObject(self, separatorLineKey, @(shouldRemoveFirstAndLastSeparatorLine), OBJC_ASSOCIATION_ASSIGN);
 }
 
 - (BOOL)shouldRemoveFirstAndLastSeparatorLine
 {
-
     return [objc_getAssociatedObject(self, separatorLineKey) boolValue];
 }
 
@@ -37,11 +35,10 @@ static void *separatorLineKey = @"separatorLineKey";
     [self hf_layoutSubviews];
     //不隐藏
     if(!self.shouldRemoveFirstAndLastSeparatorLine) return;
-    
     //隐藏
     for (UIView *subView in self.subviews) {
         if (subView != self.contentView) {
-            if (subView.frame.origin.x == 0){
+            if (subView.frame.origin.x == 0 && subView.frame.origin.y != -0.5){
                 subView.hidden = YES;
             }
 
